@@ -39,21 +39,12 @@ export function setInterval(start, step, end, isIncluded=true, skip = []){
  * */
 export function gridGenerator({ctx, gridcellDim, gridcellMatrix}) {
 
-    ctx.scale(devicePixelRatio, devicePixelRatio)
-
-    const divisor = Math.ceil( Number( ( ctx.canvas.width / gridcellDim ) ) );
-
-    let 
-        outer_counter = 0
-        ,
-        inner_counter = gridcellMatrix
-        ;
-
+    /** {@link https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API/Tutorial/Transformations} */
+    ctx.setTransform(devicePixelRatio, 0, 0, devicePixelRatio, 0, 0)
     ctx.clearRect(0, 0, ctx.canvas.width, ctx.canvas.height)
     function drawGrid(x, y, xLen = gridcellDim, yLen = gridcellDim) {
 
         ctx.beginPath();
-        ctx.moveTo(0, 0);
         ctx.rect(x, y, xLen, yLen);
         ctx.strokeStyle = 'black';
         ctx.lineWidth = 1;
@@ -61,27 +52,26 @@ export function gridGenerator({ctx, gridcellDim, gridcellMatrix}) {
 
     }
 
-    if (gridcellMatrix) {
+    const divisorY = Math.ceil( Number( ( ctx.canvas.height / gridcellDim ) ) );
+    ;[...new Array(divisorY)].map((v, row)=>{
 
-        for ( let i = 0; i < divisor; i++ ) {
+        return v = 1+row;
 
-            drawGrid(outer_counter, outer_counter) // DEV_NOTE # ordered pair (0,0) for [x,y] respectively;
+    }).forEach((row)=>{
 
-            for ( let k = 0; k < divisor; k++ ) {
+        gridcellMatrix.forEach((_, col)=>{
 
-                    drawGrid(inner_counter[k], outer_counter)
-                    drawGrid(outer_counter, inner_counter[k])
+            if(row === 1/* if it's very 1st row, see cont'd... */){
 
-                if ( (1+k) === divisor ) {
-
-                    outer_counter += gridcellDim;
-
-                }
+                drawGrid(gridcellDim * col, 0); /* [cont'd] ...fill the row */
 
             }
 
-        endfor:;}
+            drawGrid(gridcellDim * col, gridcellDim*row);
+        
+        })
+    
 
-    endif:;}
-
+    })
+    
 }
