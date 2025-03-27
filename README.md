@@ -1,5 +1,9 @@
 # Project name: **responsive-canvas-grid**
 
+## STATUS: 
+
+> DO NOT USE IT (OBSOLETE) !!!
+
 > **NOTE**: This is library-free implementation of responsive `grid view` for HTML Canvas (see Fig.1)
 
 Fig 1.
