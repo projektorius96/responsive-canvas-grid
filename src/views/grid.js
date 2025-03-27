@@ -2,11 +2,11 @@
  * @param {Number} start              - range lower bound
  * @param {Number} step               - range step
  * @param {Number} end                - range upper bound
- * @param {Boolean} [isIncluded=true] - `isIncluded === true ? [start:end] : [start:end)`, where `[]` denotes "closed", and `()` "open" interval a.k.a. range
- * @param {Array} [skip=Array]        - let's say you need dashed polygon
- * @returns {Array}                     one-dimensional array (range)
+ * @param {Boolean} [isIncluded=true] - `isIncluded === true ? [start:end] : [start:end)`, where `[]` denotes "closed", and `()` "open" range (interval)
+ * @param {Array} [skip=Array]        - let's say you need dashed polygon (more precisely - a dashed line)
+ * @returns {Array}                     one-dimensional array holding a range
  */
-export function setInterval(start, step, end, isIncluded=true, skip = []){
+export function setRange(start, step, end, isIncluded=true, skip = []){
     
     const range = [];
     

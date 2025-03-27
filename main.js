@@ -1,6 +1,6 @@
 import './style.css';
-import { name } from './package.json';
-import { gridGenerator, setInterval } from './src/views/grid';
+import { gridGenerator, setRange } from './src/views/grid';
+import package_json from './package.json' with {type: 'json'};
 
 document.addEventListener('DOMContentLoaded', ()=>{
   document.title = name;

@@ -1,18 +1,30 @@
+:root {
+    --vertical-scrollbar-width: calc(100vw - 100%);
+}
+
 body,
 body * {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
+    overflow: hidden;
 }
 
 div#stage {
     display: block;
-    width: 100vw;
+    width: calc( 100vw - var(--vertical-scrollbar-width) );
     height: 100vh;
+    position: relative;
+    top: 0px;
+    left: 0px;
 }
 
 canvas.layer {
     display: inherit;
     width: 100%;
     height: 100%;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    background: transparent;
 }
